@@ -1,0 +1,34 @@
+[
+  {
+    "question": "What is the difference between my survival rate and my growth rate?",
+    "answer": "<p>Your <strong>Survival Rate</strong> is the minimum hourly rate that covers every cost: your desired take-home pay (gross-adjusted for taxes), plus all annual business overhead. Charging below this rate means you end the year with less than you need, even before accounting for any savings.</p><p>Your <strong>Growth Rate</strong> adds a percentage buffer on top of the survival rate. That buffer funds emergency cash reserves, business reinvestment, equipment replacement, and personal savings. It is what separates a sustainable freelance business from one that breaks even at best.</p>"
+  },
+  {
+    "question": "Why do I need to enter my desired take-home pay instead of gross income?",
+    "answer": "<p>Because the amount you actually need to live on is the after-tax number. The calculator reverse-engineers your required gross income from your take-home target using your estimated tax rate. This ensures the rate you charge already accounts for the tax liability, so you are not surprised at filing time.</p>"
+  },
+  {
+    "question": "What tax rate should I enter if I am a US freelancer?",
+    "answer": "<p>A combined rate of <strong>25-35%</strong> is typical for most US freelancers. This covers self-employment tax (15.3% on the first ~$168,600 of net earnings in 2024), federal income tax, and an estimate for state tax. The reference table in the article above gives bracket-by-bracket guidance. If you are in a high-tax state like California or New York, add 5-8% on top. When in doubt, use 30% as a conservative starting point and adjust after speaking with a CPA.</p>"
+  },
+  {
+    "question": "How do I calculate hardware depreciation?",
+    "answer": "<p>Divide the purchase price of each piece of equipment by its expected useful life in years. A $2,400 laptop used for 4 years = $600/year. Add up all equipment (monitor, external drives, camera, tablet, audio gear) and total the annual depreciation. This is the number to enter in the Hardware Depreciation field. The IRS allows various depreciation methods; this linear approach is conservative and easy to track.</p>"
+  },
+  {
+    "question": "What counts as a billable hour?",
+    "answer": "<p>A billable hour is any hour you charge directly to a client for deliverable work. Time you <em>cannot</em> bill includes: writing proposals, chasing invoices, updating your portfolio, prospecting for new work, professional development, and discovery calls with leads who do not convert. Most freelancers find 60-75% of their total working hours are truly billable. New freelancers or those in a growth phase should estimate conservatively at 55-65%.</p>"
+  },
+  {
+    "question": "Should I charge different rates for different types of projects?",
+    "answer": "<p>Yes, this is common and often advisable. Your calculated rate is your floor and your baseline for estimating, not a rigid price list. Projects with tighter deadlines, specialized skills, difficult client relationships, or significant revision exposure should carry a premium above your Growth Rate. Fixed-price projects should be scoped using your hourly rate as a baseline, then padded by 15-20% for revision cycles and scope creep. The Growth Rate is your standard rate for new client engagements.</p>"
+  },
+  {
+    "question": "How often should I recalculate my rate?",
+    "answer": "<p>At minimum, recalculate once per year, typically in Q4 before the new year starts. Also recalculate any time a significant variable changes: new insurance policy, major software price increase, change in your target income, or shift in how many billable hours you actually achieve. SaaS tool costs have been rising 10-20% annually across many platforms, which alone can add $3-8/hr to your required rate over a few years if not tracked.</p>"
+  },
+  {
+    "question": "What if I cannot charge my calculated rate in my market?",
+    "answer": "<p>That is a signal worth taking seriously. If the market rate for your service is consistently below your survival rate, you have four options: reduce overhead costs, increase your billable efficiency, raise your skills to target higher-budget clients, or re-evaluate your target income. Chronically charging below your survival rate is not a sustainable freelance business. It is a form of slow underpayment where you are subsidizing clients at your own expense.</p>"
+  }
+]

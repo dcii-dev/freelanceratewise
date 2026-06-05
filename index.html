@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your true freelance hourly rate. Factor in non-billable hours, taxes, overhead, and expenses to find your real survival and growth rates.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Freelance Rate Calculator - Find Your True Hourly Rate">
+  <meta property="og:description" content="Stop undercharging. Calculate your real freelance hourly rate including taxes, overhead, non-billable hours, and business expenses.">
+  <meta property="og:image" content="https://freelanceratewise.com/images/opengraph.png">
+  <meta property="og:url" content="https://freelanceratewise.com/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Freelance Rate Calculator - Find Your True Hourly Rate">
+  <meta name="twitter:description" content="Stop undercharging. Calculate your real freelance hourly rate including taxes, overhead, and non-billable hours.">
+  <meta name="twitter:image" content="https://freelanceratewise.com/images/opengraph.png">
+  <link rel="canonical" href="https://freelanceratewise.com/">
+  <title>Freelance Rate Calculator - Find Your True Hourly Rate</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/ads.css">
+  <!-- Apply saved theme before paint to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      const t = localStorage.getItem("freelanceratewise-theme");
+      if (t === "dark" || t === "light") {
+        document.documentElement.setAttribute("data-theme", t);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- SKIP NAVIGATION -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <a href="/" class="site-header__logo" aria-label="Freelance Rate Calculator home">
+        <svg class="site-header__logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <!-- Growth bars: ascending left to right (each 3.5w, 1.5 gap) -->
+          <rect x="0" y="21" width="3.5" height="7" rx="1.25" fill="currentColor" opacity="0.35"/>
+          <rect x="5" y="16" width="3.5" height="12" rx="1.25" fill="currentColor" opacity="0.6"/>
+          <rect x="10" y="11" width="3.5" height="17" rx="1.25" fill="currentColor" opacity="0.9"/>
+          <!-- Calculator body (1.5 gap from bar3 right edge at 13.5) -->
+          <rect x="15" y="3" width="13" height="25" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <!-- Display strip -->
+          <rect x="16.5" y="4.5" width="10" height="5" rx="1" fill="currentColor" opacity="0.2"/>
+          <!-- Button row 1 -->
+          <rect x="16.5" y="12.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <rect x="22.25" y="12.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <!-- Button row 2 -->
+          <rect x="16.5" y="17" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <rect x="22.25" y="17" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <!-- Button row 3 -->
+          <rect x="16.5" y="21.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <rect x="22.25" y="21.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+        </svg>
+        <span class="site-header__logo-text">FreelanceRatewise</span>
+      </a>
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">&#9788;</span>
+        <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">&#9790;</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- AD LEADERBOARD TOP -->
+  <div class="ad-slot ad-slot--leaderboard" aria-hidden="true">
+    <span class="ad-slot__label">Advertisement</span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="site-main" id="main-content">
+
+    <!-- TOOL SECTION -->
+    <section class="tool-section" aria-labelledby="tool-heading">
+      <div class="tool-section__inner">
+
+        <h1 class="tool-section__title" id="tool-heading">Freelance True Hourly Rate Calculator</h1>
+        <p class="tool-section__description">
+          Find out what you actually need to charge. Enter your income target,
+          expenses, and real working hours to get your Survival Rate and
+          Growth Rate.
+        </p>
+
+        <!-- TOOL FORM -->
+        <form class="tool-form" id="rate-form" aria-label="Rate calculator inputs" novalidate>
+
+          <!-- SECTION: INCOME -->
+          <fieldset class="form-section">
+            <legend class="form-section__legend">Target Income</legend>
+            <div class="tool-form__grid">
+
+              <div class="form-group">
+                <label class="form-group__label form-group__label--required" for="target-income">
+                  Desired Annual Take-Home
+                </label>
+                <div class="form-group__input-wrap">
+                  <span class="form-group__prefix">$</span>
+                  <input
+                    class="form-group__input"
+                    type="number"
+                    id="target-income"
+                    value="60000"
+                    min="0"
+                    step="1000"
+                    aria-required="true"
+                    aria-describedby="target-income-hint"
+                  >
+                </div>
+                <span class="form-group__hint" id="target-income-hint">After-tax income you want to bring home.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label form-group__label--required" for="tax-rate">
+                  Estimated Tax Rate
+                </label>
+                <div class="form-group__input-wrap">
+                  <input
+                    class="form-group__input"
+                    type="number"
+                    id="tax-rate"
+                    value="28"
+                    min="0"
+                    max="60"
+                    step="1"
+                    aria-required="true"
+                    aria-describedby="tax-rate-hint"
+                  >
+                  <span class="form-group__suffix">%</span>
+                </div>
+                <span class="form-group__hint" id="tax-rate-hint">Self-employment + income tax combined. 25-35% is typical in the US.</span>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <!-- SECTION: HOURS -->
+          <fieldset class="form-section">
+            <legend class="form-section__legend">Working Hours</legend>
+            <div class="tool-form__grid">
+
+              <div class="form-group">
+                <label class="form-group__label form-group__label--required" for="weeks-per-year">
+                  Weeks Worked Per Year
+                </label>
+                <div class="form-group__input-wrap">
+                  <input
+                    class="form-group__input"
+                    type="number"
+                    id="weeks-per-year"
+                    value="48"
+                    min="1"
+                    max="52"
+                    step="1"
+                    aria-required="true"
+                    aria-describedby="weeks-hint"
+                  >
+                  <span class="form-group__suffix">wks</span>
+                </div>
+                <span class="form-group__hint" id="weeks-hint">Subtract vacation, sick days, and holidays. 48 = 4 weeks off.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label form-group__label--required" for="hours-per-week">
+                  Total Hours Worked Per Week
+                </label>
+                <div class="form-group__input-wrap">
+                  <input
+                    class="form-group__input"
+                    type="number"
+                    id="hours-per-week"
+                    value="40"
+                    min="1"
+                    max="80"
+                    step="1"
+                    aria-required="true"
+                    aria-describedby="hours-total-hint"
+                  >
+                  <span class="form-group__suffix">hrs</span>
+                </div>
+                <span class="form-group__hint" id="hours-total-hint">All hours worked including admin, marketing, and client work.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label form-group__label--required" for="billable-percent">
+                  Billable Hours
+                </label>
+                <div class="form-group__input-wrap">
+                  <input
+                    class="form-group__input"
+                    type="number"
+                    id="billable-percent"
+                    value="70"
+                    min="1"
+                    max="100"
+                    step="1"
+                    aria-required="true"
+                    aria-describedby="billable-hint"
+                  >
+                  <span class="form-group__suffix">%</span>
+                </div>
+                <span class="form-group__hint" id="billable-hint">Percent of your time you can actually bill clients. 60-75% is realistic.</span>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <!-- SECTION: OVERHEAD -->
+          <fieldset class="form-section">
+            <legend class="form-section__legend">Annual Business Expenses</legend>
+            <div class="tool-form__grid">
+
+              <div class="form-group">
+                <label class="form-group__label" for="software-cost">
+                  Software &amp; Subscriptions
+                </label>
+                <div class="form-group__input-wrap">
+                  <span class="form-group__prefix">$</span>
+                  <input class="form-group__input" type="number" id="software-cost" value="1200" min="0" step="100">
+                </div>
+                <span class="form-group__hint">Adobe, Figma, Notion, etc. per year.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label" for="hardware-cost">
+                  Hardware Depreciation
+                </label>
+                <div class="form-group__input-wrap">
+                  <span class="form-group__prefix">$</span>
+                  <input class="form-group__input" type="number" id="hardware-cost" value="600" min="0" step="100">
+                </div>
+                <span class="form-group__hint">Equipment cost divided by useful life in years.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label" for="insurance-cost">
+                  Business Insurance
+                </label>
+                <div class="form-group__input-wrap">
+                  <span class="form-group__prefix">$</span>
+                  <input class="form-group__input" type="number" id="insurance-cost" value="600" min="0" step="100">
+                </div>
+                <span class="form-group__hint">Liability, E&amp;O, health insurance contribution.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label" for="other-cost">
+                  Other Expenses
+                </label>
+                <div class="form-group__input-wrap">
+                  <span class="form-group__prefix">$</span>
+                  <input class="form-group__input" type="number" id="other-cost" value="500" min="0" step="100">
+                </div>
+                <span class="form-group__hint">Marketing, courses, coworking, accounting, etc.</span>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <!-- GROWTH BUFFER -->
+          <fieldset class="form-section">
+            <legend class="form-section__legend">Growth Buffer</legend>
+            <div class="tool-form__grid tool-form__grid--single">
+              <div class="form-group">
+                <label class="form-group__label" for="growth-buffer">
+                  Savings &amp; Reinvestment Target
+                </label>
+                <div class="form-group__input-wrap">
+                  <input
+                    class="form-group__input"
+                    type="number"
+                    id="growth-buffer"
+                    value="10"
+                    min="0"
+                    max="50"
+                    step="1"
+                  >
+                  <span class="form-group__suffix">%</span>
+                </div>
+                <span class="form-group__hint">Added on top of your survival rate for savings, business growth, and reinvestment. 10-20% is recommended.</span>
+              </div>
+            </div>
+          </fieldset>
+
+        </form>
+
+        <!-- RESULTS -->
+        <div class="results" aria-live="polite" aria-label="Calculated rates">
+          <div class="results__card results__card--survival">
+            <span class="results__card-label">Survival Rate</span>
+            <output class="results__card-value" id="survival-rate" for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost">$0<span class="results__card-unit">/hr</span></output>
+            <p class="results__card-desc">Minimum to cover all costs and reach your income goal.</p>
+          </div>
+          <div class="results__card results__card--growth">
+            <span class="results__card-label">Growth Rate</span>
+            <output class="results__card-value" id="growth-rate" for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost growth-buffer">$0<span class="results__card-unit">/hr</span></output>
+            <p class="results__card-desc">What to charge to also save, reinvest, and build a buffer.</p>
+          </div>
+        </div>
+
+        <!-- BREAKDOWN -->
+        <details class="breakdown" id="breakdown-details">
+          <summary class="breakdown__summary">Show calculation breakdown</summary>
+          <div class="breakdown__body">
+            <dl class="breakdown__list">
+              <div class="breakdown__row">
+                <dt class="breakdown__term">Gross income needed</dt>
+                <dd class="breakdown__detail" id="breakdown-gross">$0</dd>
+              </div>
+              <div class="breakdown__row">
+                <dt class="breakdown__term">Total annual overhead</dt>
+                <dd class="breakdown__detail" id="breakdown-overhead">$0</dd>
+              </div>
+              <div class="breakdown__row">
+                <dt class="breakdown__term">Total annual cost</dt>
+                <dd class="breakdown__detail" id="breakdown-total-cost">$0</dd>
+              </div>
+              <div class="breakdown__row">
+                <dt class="breakdown__term">Billable hours per year</dt>
+                <dd class="breakdown__detail" id="breakdown-billable-hours">0 hrs</dd>
+              </div>
+              <div class="breakdown__row">
+                <dt class="breakdown__term">Survival rate</dt>
+                <dd class="breakdown__detail" id="breakdown-survival">$0/hr</dd>
+              </div>
+              <div class="breakdown__row">
+                <dt class="breakdown__term">Growth buffer added</dt>
+                <dd class="breakdown__detail" id="breakdown-buffer">$0/hr</dd>
+              </div>
+            </dl>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- AD INLINE MID PAGE -->
+    <div class="ad-slot ad-slot--inline" aria-hidden="true">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+
+    <!-- CONTENT + SIDEBAR LAYOUT -->
+    <div class="content-layout">
+
+      <!-- MAIN COPY -->
+      <section class="content-section" aria-labelledby="content-heading">
+        <div class="content-section__body">
+
+          <h2 id="content-heading">Why Freelancers Undercharge (and How to Fix It)</h2>
+          <p>
+            The most common pricing mistake freelancers make is calculating their rate by
+            dividing their target income by 2,080 hours (the standard 40-hour, 52-week work year).
+            This number is wrong before you even start. It ignores taxes, ignores overhead, and
+            most critically, it assumes 100% of your working time is billable. In reality, a
+            realistic billable percentage for most freelancers is 60-75%.
+          </p>
+          <p>
+            If you want $60,000 take-home and you divide by 2,080, you get $28.85/hr.
+            Factor in a 28% self-employment tax rate, 30% non-billable time, and $2,900
+            in annual overhead, and your actual required rate is closer to $56/hr. Charging
+            $28 puts you on a path to burnout, not sustainability.
+          </p>
+
+          <h2>The Four Variables That Determine Your Real Rate</h2>
+
+          <h3>1. Gross Income Required</h3>
+          <p>
+            Your take-home target is not your billable target. As a self-employed contractor
+            you are responsible for both the employee and employer portions of self-employment
+            tax (15.3% in the US on top of your federal and state income tax). A commonly
+            used estimate for combined self-employment plus income tax for US freelancers earning
+            $50,000-$100,000 is 25-35%. This calculator uses your estimated total tax rate to
+            back-calculate the gross income you need to earn before taxes.
+          </p>
+          <p>
+            Formula: <code>gross = takeHome / (1 - taxRate)</code>
+          </p>
+
+          <h3>2. Annual Overhead</h3>
+          <p>
+            Every expense that keeps your business running has to be covered by your billable
+            rate. Common categories that freelancers undercount:
+          </p>
+          <ul>
+            <li><strong>Software subscriptions:</strong> Design tools, project management apps, accounting software, cloud storage. These compound quickly across 8-12 tools.</li>
+            <li><strong>Hardware depreciation:</strong> A $3,000 laptop used for 5 years costs you $600/year. A monitor, external drive, and peripherals add more. Spread the cost over useful life, not purchase year.</li>
+            <li><strong>Business insurance:</strong> General liability, professional liability (E&amp;O), and health insurance if self-funded. Even a basic policy bundle runs $500-$1,500/year.</li>
+            <li><strong>Other business costs:</strong> Accounting and tax preparation, marketing spend, professional development courses, coworking membership, domain and hosting fees.</li>
+          </ul>
+
+          <h3>3. Billable Hours</h3>
+          <p>
+            Not every hour you work is an hour you can charge for. Admin work, invoicing,
+            responding to leads, maintaining your portfolio, professional development, and
+            project discovery calls are all real work that consumes real time. Most experienced
+            freelancers find 60-75% billable efficiency is realistic over a full year.
+            If you are just starting out, assume 55-65%.
+          </p>
+          <p>
+            Formula: <code>billableHours = weeksWorked x hoursPerWeek x (billablePercent / 100)</code>
+          </p>
+
+          <h3>4. The Growth Buffer</h3>
+          <p>
+            The Survival Rate covers your costs. The Growth Rate adds a percentage on top to
+            fund savings, emergency reserves, equipment replacement cycles, and reinvestment
+            in your business. Without this buffer, any unexpected gap in work or large expense
+            immediately puts you underwater. A 10-20% buffer is a minimum sustainable target.
+          </p>
+
+          <h2>US Self-Employment Tax Reference</h2>
+          <p>
+            Use this table as a rough guide when estimating your combined tax rate. These are
+            generalizations. Your actual liability depends on deductions, state of residence,
+            filing status, and business structure. Consult a CPA for precise figures.
+          </p>
+          <table class="reference-table" aria-label="Estimated combined tax rates by income">
+            <thead>
+              <tr>
+                <th scope="col">Annual Gross Income</th>
+                <th scope="col">Estimated Combined Rate</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Under $30,000</td>
+                <td>18-22%</td>
+                <td>SE tax + low income bracket</td>
+              </tr>
+              <tr>
+                <td>$30,000 - $60,000</td>
+                <td>22-28%</td>
+                <td>Most common range for new freelancers</td>
+              </tr>
+              <tr>
+                <td>$60,000 - $100,000</td>
+                <td>28-34%</td>
+                <td>22% federal bracket + SE tax + state</td>
+              </tr>
+              <tr>
+                <td>$100,000 - $160,000</td>
+                <td>34-40%</td>
+                <td>24% federal bracket + SE tax + state</td>
+              </tr>
+              <tr>
+                <td>Over $160,000</td>
+                <td>40%+</td>
+                <td>32%+ federal bracket; consider S-Corp election</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>How to Use Your Rate in Practice</h2>
+          <p>
+            The Survival Rate is your absolute floor. Never quote below it. The Growth Rate
+            is your standard rate for new clients. Price anchoring works in your favor here:
+            quote the Growth Rate first, and if a client negotiates, you have room to move
+            toward the Survival Rate without going below sustainability.
+          </p>
+          <p>
+            Recalculate your rate at least once a year, or any time your expenses change
+            significantly (new insurance, upgraded hardware, software price increases). Rates
+            that made sense two years ago often do not account for software subscription
+            price increases, which have averaged 10-20% annually across major SaaS tools.
+          </p>
+          <p>
+            If you are pricing projects rather than hours, use your hourly rate as the baseline:
+            estimate the number of hours at your Growth Rate, then add a fixed scope buffer
+            of 15-20% to account for revision cycles and scope creep that is difficult to bill
+            for with new clients.
+          </p>
+
+          <h2>Quarterly Estimated Taxes</h2>
+          <p>
+            As a self-employed freelancer in the US, you are required to pay estimated taxes
+            quarterly (April 15, June 15, September 15, January 15). Failing to do so results
+            in an underpayment penalty on top of your tax bill. The safest approach is to
+            transfer 25-30% of every payment you receive into a dedicated tax savings account
+            immediately. Treat it as money you never had.
+          </p>
+          <p>
+            Use IRS Form 1040-ES to calculate your quarterly payment amounts. Many freelancers
+            use the safe harbor method: pay at least 100% of last year's tax liability in equal
+            quarterly installments to avoid penalties regardless of this year's actual income.
+          </p>
+
+        </div>
+      </section>
+
+      <!-- SIDEBAR AD -->
+      <aside class="content-sidebar" aria-label="Advertisements">
+        <div class="ad-slot ad-slot--sidebar" aria-hidden="true">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- AD MEDIUM RECTANGLE -->
+    <div class="ad-slot ad-slot--rectangle" aria-hidden="true">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="faq-section__inner">
+        <h2 class="faq-section__title" id="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq__accordion" id="faq-accordion" aria-label="FAQ accordion">
+          <!-- Populated by js/content.js from data/faq.json -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <p class="site-footer__copy">
+        &copy; <span id="footer-year"></span> FreelanceRatewise. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/content.js"></script>
+
+</body>
+</html>
