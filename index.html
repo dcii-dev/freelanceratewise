@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Calculate your true freelance hourly rate. Factor in non-billable hours, taxes, overhead, and expenses to find your real survival and growth rates.">
+  <meta name="description"
+    content="Calculate your true freelance hourly rate. Factor in non-billable hours, taxes, overhead, and expenses to find your real survival and growth rates.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Freelance Rate Calculator - Find Your True Hourly Rate">
-  <meta property="og:description" content="Stop undercharging. Calculate your real freelance hourly rate including taxes, overhead, non-billable hours, and business expenses.">
+  <meta property="og:description"
+    content="Stop undercharging. Calculate your real freelance hourly rate including taxes, overhead, non-billable hours, and business expenses.">
   <meta property="og:image" content="https://freelanceratewise.com/images/opengraph.png">
   <meta property="og:url" content="https://freelanceratewise.com/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Freelance Rate Calculator - Find Your True Hourly Rate">
-  <meta name="twitter:description" content="Stop undercharging. Calculate your real freelance hourly rate including taxes, overhead, and non-billable hours.">
+  <meta name="twitter:description"
+    content="Stop undercharging. Calculate your real freelance hourly rate including taxes, overhead, and non-billable hours.">
   <meta name="twitter:image" content="https://freelanceratewise.com/images/opengraph.png">
   <link rel="canonical" href="https://freelanceratewise.com/">
   <title>Freelance Rate Calculator - Find Your True Hourly Rate</title>
@@ -31,7 +35,17 @@
       }
     })();
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTGRLHPFEX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-RTGRLHPFEX');
+  </script>
 </head>
+
 <body>
 
   <!-- SKIP NAVIGATION -->
@@ -43,32 +57,27 @@
       <a href="/" class="site-header__logo" aria-label="Freelance Rate Calculator home">
         <svg class="site-header__logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
           <!-- Growth bars: ascending left to right (each 3.5w, 1.5 gap) -->
-          <rect x="0" y="21" width="3.5" height="7" rx="1.25" fill="currentColor" opacity="0.35"/>
-          <rect x="5" y="16" width="3.5" height="12" rx="1.25" fill="currentColor" opacity="0.6"/>
-          <rect x="10" y="11" width="3.5" height="17" rx="1.25" fill="currentColor" opacity="0.9"/>
+          <rect x="0" y="21" width="3.5" height="7" rx="1.25" fill="currentColor" opacity="0.35" />
+          <rect x="5" y="16" width="3.5" height="12" rx="1.25" fill="currentColor" opacity="0.6" />
+          <rect x="10" y="11" width="3.5" height="17" rx="1.25" fill="currentColor" opacity="0.9" />
           <!-- Calculator body (1.5 gap from bar3 right edge at 13.5) -->
-          <rect x="15" y="3" width="13" height="25" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="15" y="3" width="13" height="25" rx="2" stroke="currentColor" stroke-width="1.5" />
           <!-- Display strip -->
-          <rect x="16.5" y="4.5" width="10" height="5" rx="1" fill="currentColor" opacity="0.2"/>
+          <rect x="16.5" y="4.5" width="10" height="5" rx="1" fill="currentColor" opacity="0.2" />
           <!-- Button row 1 -->
-          <rect x="16.5" y="12.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
-          <rect x="22.25" y="12.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <rect x="16.5" y="12.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45" />
+          <rect x="22.25" y="12.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45" />
           <!-- Button row 2 -->
-          <rect x="16.5" y="17" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
-          <rect x="22.25" y="17" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <rect x="16.5" y="17" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45" />
+          <rect x="22.25" y="17" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45" />
           <!-- Button row 3 -->
-          <rect x="16.5" y="21.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
-          <rect x="22.25" y="21.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45"/>
+          <rect x="16.5" y="21.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45" />
+          <rect x="22.25" y="21.5" width="4.25" height="3" rx="0.75" fill="currentColor" opacity="0.45" />
         </svg>
         <span class="site-header__logo-text">FreelanceRatewise</span>
       </a>
-      <button
-        class="theme-toggle"
-        id="theme-toggle"
-        type="button"
-        aria-label="Switch to dark mode"
-        aria-pressed="false"
-      >
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode"
+        aria-pressed="false">
         <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">&#9788;</span>
         <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">&#9790;</span>
       </button>
@@ -108,16 +117,8 @@
                 </label>
                 <div class="form-group__input-wrap">
                   <span class="form-group__prefix">$</span>
-                  <input
-                    class="form-group__input"
-                    type="number"
-                    id="target-income"
-                    value="60000"
-                    min="0"
-                    step="1000"
-                    aria-required="true"
-                    aria-describedby="target-income-hint"
-                  >
+                  <input class="form-group__input" type="number" id="target-income" value="60000" min="0" step="1000"
+                    aria-required="true" aria-describedby="target-income-hint">
                 </div>
                 <span class="form-group__hint" id="target-income-hint">After-tax income you want to bring home.</span>
               </div>
@@ -127,20 +128,12 @@
                   Estimated Tax Rate
                 </label>
                 <div class="form-group__input-wrap">
-                  <input
-                    class="form-group__input"
-                    type="number"
-                    id="tax-rate"
-                    value="28"
-                    min="0"
-                    max="60"
-                    step="1"
-                    aria-required="true"
-                    aria-describedby="tax-rate-hint"
-                  >
+                  <input class="form-group__input" type="number" id="tax-rate" value="28" min="0" max="60" step="1"
+                    aria-required="true" aria-describedby="tax-rate-hint">
                   <span class="form-group__suffix">%</span>
                 </div>
-                <span class="form-group__hint" id="tax-rate-hint">Self-employment + income tax combined. 25-35% is typical in the US.</span>
+                <span class="form-group__hint" id="tax-rate-hint">Self-employment + income tax combined. 25-35% is
+                  typical in the US.</span>
               </div>
 
             </div>
@@ -156,20 +149,12 @@
                   Weeks Worked Per Year
                 </label>
                 <div class="form-group__input-wrap">
-                  <input
-                    class="form-group__input"
-                    type="number"
-                    id="weeks-per-year"
-                    value="48"
-                    min="1"
-                    max="52"
-                    step="1"
-                    aria-required="true"
-                    aria-describedby="weeks-hint"
-                  >
+                  <input class="form-group__input" type="number" id="weeks-per-year" value="48" min="1" max="52"
+                    step="1" aria-required="true" aria-describedby="weeks-hint">
                   <span class="form-group__suffix">wks</span>
                 </div>
-                <span class="form-group__hint" id="weeks-hint">Subtract vacation, sick days, and holidays. 48 = 4 weeks off.</span>
+                <span class="form-group__hint" id="weeks-hint">Subtract vacation, sick days, and holidays. 48 = 4 weeks
+                  off.</span>
               </div>
 
               <div class="form-group">
@@ -177,20 +162,12 @@
                   Total Hours Worked Per Week
                 </label>
                 <div class="form-group__input-wrap">
-                  <input
-                    class="form-group__input"
-                    type="number"
-                    id="hours-per-week"
-                    value="40"
-                    min="1"
-                    max="80"
-                    step="1"
-                    aria-required="true"
-                    aria-describedby="hours-total-hint"
-                  >
+                  <input class="form-group__input" type="number" id="hours-per-week" value="40" min="1" max="80"
+                    step="1" aria-required="true" aria-describedby="hours-total-hint">
                   <span class="form-group__suffix">hrs</span>
                 </div>
-                <span class="form-group__hint" id="hours-total-hint">All hours worked including admin, marketing, and client work.</span>
+                <span class="form-group__hint" id="hours-total-hint">All hours worked including admin, marketing, and
+                  client work.</span>
               </div>
 
               <div class="form-group">
@@ -198,20 +175,12 @@
                   Billable Hours
                 </label>
                 <div class="form-group__input-wrap">
-                  <input
-                    class="form-group__input"
-                    type="number"
-                    id="billable-percent"
-                    value="70"
-                    min="1"
-                    max="100"
-                    step="1"
-                    aria-required="true"
-                    aria-describedby="billable-hint"
-                  >
+                  <input class="form-group__input" type="number" id="billable-percent" value="70" min="1" max="100"
+                    step="1" aria-required="true" aria-describedby="billable-hint">
                   <span class="form-group__suffix">%</span>
                 </div>
-                <span class="form-group__hint" id="billable-hint">Percent of your time you can actually bill clients. 60-75% is realistic.</span>
+                <span class="form-group__hint" id="billable-hint">Percent of your time you can actually bill clients.
+                  60-75% is realistic.</span>
               </div>
 
             </div>
@@ -278,18 +247,12 @@
                   Savings &amp; Reinvestment Target
                 </label>
                 <div class="form-group__input-wrap">
-                  <input
-                    class="form-group__input"
-                    type="number"
-                    id="growth-buffer"
-                    value="10"
-                    min="0"
-                    max="50"
-                    step="1"
-                  >
+                  <input class="form-group__input" type="number" id="growth-buffer" value="10" min="0" max="50"
+                    step="1">
                   <span class="form-group__suffix">%</span>
                 </div>
-                <span class="form-group__hint">Added on top of your survival rate for savings, business growth, and reinvestment. 10-20% is recommended.</span>
+                <span class="form-group__hint">Added on top of your survival rate for savings, business growth, and
+                  reinvestment. 10-20% is recommended.</span>
               </div>
             </div>
           </fieldset>
@@ -300,12 +263,16 @@
         <div class="results" aria-live="polite" aria-label="Calculated rates">
           <div class="results__card results__card--survival">
             <span class="results__card-label">Survival Rate</span>
-            <output class="results__card-value" id="survival-rate" for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost">$0<span class="results__card-unit">/hr</span></output>
+            <output class="results__card-value" id="survival-rate"
+              for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost">$0<span
+                class="results__card-unit">/hr</span></output>
             <p class="results__card-desc">Minimum to cover all costs and reach your income goal.</p>
           </div>
           <div class="results__card results__card--growth">
             <span class="results__card-label">Growth Rate</span>
-            <output class="results__card-value" id="growth-rate" for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost growth-buffer">$0<span class="results__card-unit">/hr</span></output>
+            <output class="results__card-value" id="growth-rate"
+              for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost growth-buffer">$0<span
+                class="results__card-unit">/hr</span></output>
             <p class="results__card-desc">What to charge to also save, reinvest, and build a buffer.</p>
           </div>
         </div>
@@ -394,10 +361,14 @@
             rate. Common categories that freelancers undercount:
           </p>
           <ul>
-            <li><strong>Software subscriptions:</strong> Design tools, project management apps, accounting software, cloud storage. These compound quickly across 8-12 tools.</li>
-            <li><strong>Hardware depreciation:</strong> A $3,000 laptop used for 5 years costs you $600/year. A monitor, external drive, and peripherals add more. Spread the cost over useful life, not purchase year.</li>
-            <li><strong>Business insurance:</strong> General liability, professional liability (E&amp;O), and health insurance if self-funded. Even a basic policy bundle runs $500-$1,500/year.</li>
-            <li><strong>Other business costs:</strong> Accounting and tax preparation, marketing spend, professional development courses, coworking membership, domain and hosting fees.</li>
+            <li><strong>Software subscriptions:</strong> Design tools, project management apps, accounting software,
+              cloud storage. These compound quickly across 8-12 tools.</li>
+            <li><strong>Hardware depreciation:</strong> A $3,000 laptop used for 5 years costs you $600/year. A monitor,
+              external drive, and peripherals add more. Spread the cost over useful life, not purchase year.</li>
+            <li><strong>Business insurance:</strong> General liability, professional liability (E&amp;O), and health
+              insurance if self-funded. Even a basic policy bundle runs $500-$1,500/year.</li>
+            <li><strong>Other business costs:</strong> Accounting and tax preparation, marketing spend, professional
+              development courses, coworking membership, domain and hosting fees.</li>
           </ul>
 
           <h3>3. Billable Hours</h3>
@@ -539,4 +510,5 @@
   <script src="js/content.js"></script>
 
 </body>
+
 </html>
