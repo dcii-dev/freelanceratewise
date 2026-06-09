@@ -30,5 +30,21 @@
   {
     "question": "What if I cannot charge my calculated rate in my market?",
     "answer": "<p>That is a signal worth taking seriously. If the market rate for your service is consistently below your survival rate, you have four options: reduce overhead costs, increase your billable efficiency, raise your skills to target higher-budget clients, or re-evaluate your target income. Chronically charging below your survival rate is not a sustainable freelance business. It is a form of slow underpayment where you are subsidizing clients at your own expense.</p>"
+  },
+  {
+    "question": "What rate should I charge as a beginner freelancer?",
+    "answer": "<p>Start by calculating your actual survival rate using this tool, even if your income goal is modest. Many beginners set their rate based on what they think the market will accept rather than what they need to earn, and end up working at a loss when taxes and overhead are accounted for.</p><p>As a practical floor, avoid going below $30/hr for any professional service, even with zero experience. Below that threshold it becomes difficult to build a sustainable business after taxes. If you cannot find clients at your calculated rate, the answer is usually to narrow your niche and target better clients, not to drop your rate further.</p>"
+  },
+  {
+    "question": "Should I charge a rush fee for tight deadlines?",
+    "answer": "<p>Yes. A rush premium is standard practice and entirely justified. Tight turnarounds displace other work, require extended hours, and create stress that should be compensated. A typical rush premium is 25-50% added to your standard rate for same-week delivery, and 75-100% for same-day or next-day requests.</p><p>Be explicit about your rush policy in your initial proposal or contract. Stating it upfront prevents awkward conversations later and sets a professional tone with the client.</p>"
+  },
+  {
+    "question": "What is value-based pricing and when should I use it?",
+    "answer": "<p>Value-based pricing means setting your price based on the outcome you deliver to the client, not on the number of hours you work. If a landing page you build generates $200,000 in revenue for a client, charging $1,500 because it took 10 hours at your hourly rate dramatically undervalues the work.</p><p>Value-based pricing works best when the business outcome is measurable and significant (conversion optimization, lead generation, cost-reduction systems), when you have a track record you can point to, and when you are working directly with the decision-maker rather than a procurement department. Your hourly rate remains useful as a sanity check floor, but should not cap your fees on high-impact projects.</p>"
+  },
+  {
+    "question": "How do the Per Day, Per Week, and Per Month figures work?",
+    "answer": "<p>These figures translate your Growth Rate into practical billing periods so you can quote retainers and project estimates more easily.</p><ul><li><strong>Per Day</strong> assumes a standard 8-hour billable day at your Growth Rate.</li><li><strong>Per Week</strong> uses your actual billable hours per week (total hours worked multiplied by your billable percentage).</li><li><strong>Per Month</strong> is your weekly rate annualized and divided by 12, so it accounts for the number of weeks you actually work per year rather than assuming 52 weeks.</li></ul><p>Use these as the basis for monthly retainer quotes. A client who wants 10 hours per week of ongoing work should be quoted at roughly 10 times your effective hourly Growth Rate per week.</p>"
   }
 ]
