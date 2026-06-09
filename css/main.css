@@ -825,6 +825,285 @@ details[open] .faq__question::after {
 }
 
 /* ================================
+   RATE GAUGE
+   ================================ */
+.rate-gauge {
+  margin-top: 1.25rem;
+}
+
+.rate-gauge__track {
+  position: relative;
+  height: 0.75rem;
+  border-radius: 99px;
+  background: linear-gradient(
+    to right,
+    #ef4444 0%,
+    #f59e0b 40%,
+    #10b981 75%,
+    #6366f1 100%
+  );
+  overflow: visible;
+}
+
+.rate-gauge__fill {
+  position: absolute;
+  inset: 0;
+  right: auto;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.rate-gauge__marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 2px solid var(--clr-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.rate-gauge__marker--survival {
+  background-color: var(--clr-accent);
+  z-index: 1;
+}
+
+.rate-gauge__marker--growth {
+  background-color: var(--clr-growth);
+  z-index: 2;
+}
+
+.rate-gauge__marker--current {
+  background-color: #f59e0b;
+  z-index: 3;
+}
+
+.rate-gauge__zones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.375rem;
+}
+
+.rate-gauge__zone-label {
+  font-size: 0.6875rem;
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rate-gauge__zone-label--mid {
+  text-align: center;
+}
+
+.rate-gauge__legend {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.625rem;
+}
+
+.rate-gauge__legend-item {
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.rate-gauge__legend-item::before {
+  content: "";
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+}
+
+.rate-gauge__legend-item--survival::before {
+  background-color: var(--clr-accent);
+}
+
+.rate-gauge__legend-item--growth::before {
+  background-color: var(--clr-growth);
+}
+
+.rate-gauge__legend-item--current::before {
+  background-color: #f59e0b;
+}
+
+/* ================================
+   RATE GAP CARD
+   ================================ */
+.rate-gap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.rate-gap[data-status="under"] {
+  border-color: #ef4444;
+}
+
+.rate-gap[data-status="over"] {
+  border-color: var(--clr-accent);
+}
+
+.rate-gap[data-status="on"] {
+  border-color: var(--clr-growth);
+}
+
+.rate-gap__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-muted);
+  white-space: nowrap;
+}
+
+.rate-gap[data-status="under"] .rate-gap__label {
+  color: #ef4444;
+}
+
+.rate-gap[data-status="over"] .rate-gap__label,
+.rate-gap[data-status="on"] .rate-gap__label {
+  color: var(--clr-accent);
+}
+
+.rate-gap__value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--clr-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rate-gap__desc {
+  font-size: 0.8125rem;
+  color: var(--clr-text-muted);
+  margin: 0;
+  flex: 1;
+  min-width: 12rem;
+}
+
+/* ================================
+   PERIOD RATES
+   ================================ */
+.period-rates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.875rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 480px) {
+  .period-rates {
+    grid-template-columns: 1fr;
+  }
+}
+
+.period-card {
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.period-card__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-muted);
+}
+
+.period-card__value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--clr-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.period-card__hint {
+  font-size: 0.8125rem;
+  color: var(--clr-text-muted);
+}
+
+/* ================================
+   COPY + SHARE BUTTONS
+   ================================ */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding: 0.625rem 1.25rem;
+  background-color: transparent;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.copy-btn:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+  background-color: var(--clr-bg-alt);
+}
+
+.copy-btn:focus-visible {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+.copy-btn--success {
+  border-color: var(--clr-success);
+  color: var(--clr-success);
+  background-color: var(--clr-bg-alt);
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  margin-left: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  background-color: transparent;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.share-btn:hover {
+  border-color: #1d9bf0;
+  color: #1d9bf0;
+  background-color: var(--clr-bg-alt);
+}
+
+.share-btn:focus-visible {
+  outline: 3px solid #1d9bf0;
+  outline-offset: 3px;
+}
+
+/* ================================
    REDUCED MOTION
    ================================ */
 @media (prefers-reduced-motion: reduce) {

@@ -257,6 +257,25 @@
             </div>
           </fieldset>
 
+          <!-- CURRENT RATE -->
+          <fieldset class="form-section">
+            <legend class="form-section__legend">Your Current Rate <span class="form-group__optional">(optional)</span></legend>
+            <div class="tool-form__grid tool-form__grid--single">
+              <div class="form-group">
+                <label class="form-group__label" for="current-rate">
+                  What do you currently charge?
+                </label>
+                <div class="form-group__input-wrap">
+                  <span class="form-group__prefix">$</span>
+                  <input class="form-group__input" type="number" id="current-rate" min="0" max="10000" step="1"
+                    placeholder="e.g. 65" aria-describedby="current-rate-hint">
+                  <span class="form-group__suffix">/hr</span>
+                </div>
+                <span class="form-group__hint" id="current-rate-hint">Shows how much you may be leaving on the table annually.</span>
+              </div>
+            </div>
+          </fieldset>
+
         </form>
 
         <!-- RESULTS -->
@@ -274,6 +293,52 @@
               for="target-income tax-rate weeks-per-year hours-per-week billable-percent software-cost hardware-cost insurance-cost other-cost growth-buffer">$0<span
                 class="results__card-unit">/hr</span></output>
             <p class="results__card-desc">What to charge to also save, reinvest, and build a buffer.</p>
+          </div>
+        </div>
+
+        <!-- RATE GAUGE -->
+        <div class="rate-gauge" aria-label="Rate position gauge">
+          <div class="rate-gauge__track" aria-hidden="true">
+            <div class="rate-gauge__fill" id="gauge-fill"></div>
+            <div class="rate-gauge__marker rate-gauge__marker--survival" id="gauge-survival-marker" aria-hidden="true"></div>
+            <div class="rate-gauge__marker rate-gauge__marker--growth" id="gauge-growth-marker" aria-hidden="true"></div>
+            <div class="rate-gauge__marker rate-gauge__marker--current" id="gauge-current-marker" hidden aria-hidden="true"></div>
+          </div>
+          <div class="rate-gauge__zones" aria-hidden="true">
+            <span class="rate-gauge__zone-label">Underpaid</span>
+            <span class="rate-gauge__zone-label rate-gauge__zone-label--mid">Sustainable</span>
+            <span class="rate-gauge__zone-label">Premium</span>
+          </div>
+          <div class="rate-gauge__legend" aria-hidden="true">
+            <span class="rate-gauge__legend-item rate-gauge__legend-item--survival">Survival</span>
+            <span class="rate-gauge__legend-item rate-gauge__legend-item--growth">Growth</span>
+            <span class="rate-gauge__legend-item rate-gauge__legend-item--current" id="gauge-current-label" hidden>You</span>
+          </div>
+        </div>
+
+        <!-- RATE GAP (shown only when current rate is entered) -->
+        <div class="rate-gap" id="rate-gap-card" hidden aria-live="polite">
+          <span class="rate-gap__label" id="rate-gap-label">Gap</span>
+          <span class="rate-gap__value" id="rate-gap-value">$0/hr</span>
+          <p class="rate-gap__desc" id="rate-gap-desc"></p>
+        </div>
+
+        <!-- ALT PERIOD RATES -->
+        <div class="period-rates" aria-live="polite" aria-label="Rate by time period">
+          <div class="period-card">
+            <span class="period-card__label">Per Day</span>
+            <span class="period-card__value" id="rate-per-day">$0</span>
+            <span class="period-card__hint">8-hr day</span>
+          </div>
+          <div class="period-card">
+            <span class="period-card__label">Per Week</span>
+            <span class="period-card__value" id="rate-per-week">$0</span>
+            <span class="period-card__hint">at growth rate</span>
+          </div>
+          <div class="period-card">
+            <span class="period-card__label">Per Month</span>
+            <span class="period-card__value" id="rate-per-month">$0</span>
+            <span class="period-card__hint">at growth rate</span>
           </div>
         </div>
 
@@ -309,6 +374,15 @@
             </dl>
           </div>
         </details>
+
+        <!-- COPY + SHARE -->
+        <button class="copy-btn" id="copy-btn" type="button" aria-label="Copy all results to clipboard">
+          Copy Results
+        </button>
+        <a class="share-btn" id="share-btn" href="#" target="_blank" rel="noopener noreferrer"
+          aria-label="Share your rate results on X">
+          Share on X
+        </a>
 
       </div>
     </section>

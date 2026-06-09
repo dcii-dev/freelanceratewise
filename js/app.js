@@ -93,6 +93,7 @@
       insuranceCost: parse("insurance-cost", 0, 1_000_000, 0),
       otherCost: parse("other-cost", 0, 1_000_000, 0),
       growthBuffer: parse("growth-buffer", 0, 100, 10),
+      currentRate: parse("current-rate", 0, 10000, 0),
     };
   }
 
@@ -117,7 +118,12 @@
    *   billableHours: number,
    *   survivalRate: number,
    *   growthRate: number,
-   *   bufferPerHour: number
+   *   bufferPerHour: number,
+   *   ratePerDay: number,
+   *   ratePerWeek: number,
+   *   ratePerMonth: number,
+   *   currentRate: number,
+   *   annualGap: number|null
    * }}
    */
   function calculate(inputs) {
@@ -132,6 +138,7 @@
       insuranceCost,
       otherCost,
       growthBuffer,
+      currentRate,
     } = inputs;
 
     const grossNeeded = takeHome / (1 - taxRate / 100);
@@ -144,6 +151,18 @@
     const bufferPerHour = survivalRate * (growthBuffer / 100);
     const growthRate = survivalRate + bufferPerHour;
 
+    // Alt period rates based on growth rate
+    const billableHoursPerWeek = hoursPerWeek * (billablePercent / 100);
+    const ratePerDay = growthRate * 8;
+    const ratePerWeek = growthRate * billableHoursPerWeek;
+    const ratePerMonth = (ratePerWeek * weeksPerYear) / 12;
+
+    // Current rate gap
+    const annualGap =
+      currentRate > 0
+        ? (growthRate - currentRate) * billableHours
+        : null;
+
     return {
       grossNeeded,
       totalOverhead,
@@ -152,6 +171,11 @@
       survivalRate,
       growthRate,
       bufferPerHour,
+      ratePerDay,
+      ratePerWeek,
+      ratePerMonth,
+      currentRate,
+      annualGap,
     };
   }
 
@@ -178,11 +202,55 @@
   }
 
   /**
+   * Updates the rate gauge bar and markers.
+   * @param {number} survivalRate
+   * @param {number} growthRate
+   * @param {number} currentRate - 0 means not entered.
+   */
+  function updateGauge(survivalRate, growthRate, currentRate) {
+    const MAX_RATE = 200;
+    const fill = document.getElementById("gauge-fill");
+    const survivalMarker = document.getElementById("gauge-survival-marker");
+    const growthMarker = document.getElementById("gauge-growth-marker");
+    const currentMarker = document.getElementById("gauge-current-marker");
+    const currentLabel = document.getElementById("gauge-current-label");
+
+    /** @param {number} rate @return {number} */
+    const toPct = (rate) =>
+      Math.min(100, Math.max(0, (rate / MAX_RATE) * 100));
+
+    if (fill) {
+      fill.style.width = `${toPct(growthRate)}%`;
+    }
+    if (survivalMarker) {
+      survivalMarker.style.left = `${toPct(survivalRate)}%`;
+    }
+    if (growthMarker) {
+      growthMarker.style.left = `${toPct(growthRate)}%`;
+    }
+    if (currentMarker && currentLabel) {
+      if (currentRate > 0) {
+        currentMarker.hidden = false;
+        currentLabel.hidden = false;
+        currentMarker.style.left = `${toPct(currentRate)}%`;
+      } else {
+        currentMarker.hidden = true;
+        currentLabel.hidden = true;
+      }
+    }
+  }
+
+  /**
    * Updates all output elements with the latest calculated results.
    */
   function updateOutput() {
     const inputs = getInputs();
     const result = calculate(inputs);
+
+    const setText = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
 
     const survivalEl = document.getElementById("survival-rate");
     const growthEl = document.getElementById("growth-rate");
@@ -194,11 +262,7 @@
       growthEl.innerHTML = `${formatRate(result.growthRate)}<span class="results__card-unit">/hr</span>`;
     }
 
-    const setText = (id, text) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = text;
-    };
-
+    // Breakdown
     setText("breakdown-gross", formatDollars(result.grossNeeded));
     setText("breakdown-overhead", formatDollars(result.totalOverhead));
     setText("breakdown-total-cost", formatDollars(result.totalCost));
@@ -208,6 +272,102 @@
     );
     setText("breakdown-survival", `${formatRate(result.survivalRate)}/hr`);
     setText("breakdown-buffer", `+${formatRate(result.bufferPerHour)}/hr`);
+
+    // Gauge
+    updateGauge(result.survivalRate, result.growthRate, result.currentRate);
+
+    // Rate gap card
+    const gapCard = document.getElementById("rate-gap-card");
+    if (gapCard) {
+      if (result.annualGap !== null) {
+        gapCard.hidden = false;
+        const hourlyGap = result.growthRate - result.currentRate;
+        const gapLabel = document.getElementById("rate-gap-label");
+        const gapValue = document.getElementById("rate-gap-value");
+        const gapDesc = document.getElementById("rate-gap-desc");
+        if (hourlyGap > 0) {
+          if (gapLabel) gapLabel.textContent = "Undercharging by";
+          if (gapValue) gapValue.textContent = `${formatRate(hourlyGap)}/hr`;
+          if (gapDesc) {
+            gapDesc.textContent = `That's ${formatDollars(Math.abs(result.annualGap))} left on the table per year.`;
+          }
+          if (gapCard) gapCard.dataset.status = "under";
+        } else if (hourlyGap < 0) {
+          if (gapLabel) gapLabel.textContent = "Charging above growth rate by";
+          if (gapValue) gapValue.textContent = `${formatRate(Math.abs(hourlyGap))}/hr`;
+          if (gapDesc) {
+            gapDesc.textContent = `You're pricing above your growth rate. Strong position.`;
+          }
+          if (gapCard) gapCard.dataset.status = "over";
+        } else {
+          if (gapLabel) gapLabel.textContent = "Right on target";
+          if (gapValue) gapValue.textContent = `${formatRate(result.currentRate)}/hr`;
+          if (gapDesc) gapDesc.textContent = `Your current rate matches your growth rate exactly.`;
+          if (gapCard) gapCard.dataset.status = "on";
+        }
+      } else {
+        gapCard.hidden = true;
+      }
+    }
+
+    // Period rates
+    setText("rate-per-day", formatDollars(result.ratePerDay));
+    setText("rate-per-week", formatDollars(result.ratePerWeek));
+    setText("rate-per-month", formatDollars(result.ratePerMonth));
+
+    // Share button
+    const shareBtn = document.getElementById("share-btn");
+    if (shareBtn) {
+      const tweetText = [
+        `My freelance rates: Survival ${formatRate(result.survivalRate)}/hr | Growth ${formatRate(result.growthRate)}/hr`,
+        `Monthly equivalent: ${formatDollars(result.ratePerMonth)}`,
+        `Are you charging enough?`,
+        `freelanceratewise.com`,
+      ].join("\n");
+      shareBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    }
+
+    // Copy button
+    const copyBtn = document.getElementById("copy-btn");
+    if (copyBtn && !copyBtn.dataset.bound) {
+      copyBtn.dataset.bound = "true";
+      copyBtn.addEventListener("click", () => {
+        const lines = [
+          "FreelanceRateWise Results",
+          `Survival Rate:  ${formatRate(result.survivalRate)}/hr`,
+          `Growth Rate:    ${formatRate(result.growthRate)}/hr`,
+          "",
+          `Per Day:   ${formatDollars(result.ratePerDay)}`,
+          `Per Week:  ${formatDollars(result.ratePerWeek)}`,
+          `Per Month: ${formatDollars(result.ratePerMonth)}`,
+          "",
+          `Billable Hours/yr: ${Math.round(result.billableHours).toLocaleString()}`,
+          `Total Annual Cost: ${formatDollars(result.totalCost)}`,
+        ];
+        if (result.annualGap !== null) {
+          const hourlyGap = result.growthRate - result.currentRate;
+          lines.push("");
+          lines.push(
+            hourlyGap > 0
+              ? `Leaving on table: ${formatDollars(Math.abs(result.annualGap))}/yr`
+              : `Above growth rate: ${formatRate(Math.abs(hourlyGap))}/hr`,
+          );
+        }
+        navigator.clipboard
+          .writeText(lines.join("\n"))
+          .then(() => {
+            copyBtn.textContent = "Copied!";
+            copyBtn.classList.add("copy-btn--success");
+            setTimeout(() => {
+              copyBtn.textContent = "Copy Results";
+              copyBtn.classList.remove("copy-btn--success");
+            }, 2000);
+          })
+          .catch(() => {
+            copyBtn.textContent = "Copy unavailable";
+          });
+      });
+    }
   }
 
   /* ================================
