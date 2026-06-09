@@ -159,9 +159,7 @@
 
     // Current rate gap
     const annualGap =
-      currentRate > 0
-        ? (growthRate - currentRate) * billableHours
-        : null;
+      currentRate > 0 ? (growthRate - currentRate) * billableHours : null;
 
     return {
       grossNeeded,
@@ -216,8 +214,7 @@
     const currentLabel = document.getElementById("gauge-current-label");
 
     /** @param {number} rate @return {number} */
-    const toPct = (rate) =>
-      Math.min(100, Math.max(0, (rate / MAX_RATE) * 100));
+    const toPct = (rate) => Math.min(100, Math.max(0, (rate / MAX_RATE) * 100));
 
     if (fill) {
       fill.style.width = `${toPct(growthRate)}%`;
@@ -294,15 +291,18 @@
           if (gapCard) gapCard.dataset.status = "under";
         } else if (hourlyGap < 0) {
           if (gapLabel) gapLabel.textContent = "Charging above growth rate by";
-          if (gapValue) gapValue.textContent = `${formatRate(Math.abs(hourlyGap))}/hr`;
+          if (gapValue)
+            gapValue.textContent = `${formatRate(Math.abs(hourlyGap))}/hr`;
           if (gapDesc) {
             gapDesc.textContent = `You're pricing above your growth rate. Strong position.`;
           }
           if (gapCard) gapCard.dataset.status = "over";
         } else {
           if (gapLabel) gapLabel.textContent = "Right on target";
-          if (gapValue) gapValue.textContent = `${formatRate(result.currentRate)}/hr`;
-          if (gapDesc) gapDesc.textContent = `Your current rate matches your growth rate exactly.`;
+          if (gapValue)
+            gapValue.textContent = `${formatRate(result.currentRate)}/hr`;
+          if (gapDesc)
+            gapDesc.textContent = `Your current rate matches your growth rate exactly.`;
           if (gapCard) gapCard.dataset.status = "on";
         }
       } else {
